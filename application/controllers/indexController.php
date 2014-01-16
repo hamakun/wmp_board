@@ -1,3 +1,20 @@
-<?
+<?php
 
-echo 111111111111;
+class IndexController extends \Phalcon\Mvc\Controller
+{
+	public function initialize()
+	{
+		Phalcon\Tag::setTitle('Index');
+	}
+
+	public function indexAction()
+	{
+		
+	}
+
+	public function listAction()
+	{
+
+	}
+}
+

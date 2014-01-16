@@ -2,9 +2,9 @@
 <html>
     <head>
         <meta charset="utf-8">
-        {{ get_title() }}
+        <?php echo $this->tag->getTitle(); ?>
     </head>
     <body>
-        {{ content() }}
+        <?php echo $this->getContent(); ?>
     </body>
 </html>
