@@ -1,7 +1,8 @@
 <?php
 
 error_reporting(E_ALL);
-
+$debug = new \Phalcon\Debug();
+$debug->listen();
 $config = include __DIR__ . "/../application/config/config.php";
 
 try
@@ -15,7 +16,8 @@ try
 	$loader = new \Phalcon\Loader();
 	$loader->registerDirs(array(
 	    __DIR__.'/../application/controllers/',
-	    __DIR__.'/../application/views/'
+	    __DIR__.'/../application/views/',
+		__DIR__.'/../application/models/'
 	))->register();
 
 	$di->set('url', function() use ($config) {
@@ -44,7 +46,17 @@ try
 
 	$di->set('config', $config);
 
+	$di->set('db',function() use ($config) {
+    	return new Phalcon\Db\Adapter\Pdo\Mysql(array(
+    			"host" => $config->database->host,
+    			"username" => $config->database->username,
+    			"password" => $config->database->password,
+    			"dbname" => $config->database->name
+    	)); 
+    },true);
+
 	$application = new Phalcon\Mvc\Application($di);
+
 	echo $application->handle()->getContent();
 
 } catch(\Phalcon\Exception $e) {
