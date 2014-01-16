@@ -15,5 +15,6 @@ return new \Phalcon\Config(array(
 		'pluginsDir'     => __DIR__ . '/../../application/plugins/',
 		'libraryDir'     => __DIR__ . '/../../application/library/',
 		'baseUri'        => '/',
+
 	)
 ));
