@@ -15,10 +15,11 @@ try
 	// http://docs.phalconphp.com/en/latest/reference/tutorial-invo.html#autoloaders
 	$loader = new \Phalcon\Loader();
 	$loader->registerDirs(array(
-	    __DIR__.'/../application/controllers/',
-	    __DIR__.'/../application/views/',
-		__DIR__.'/../application/models/'
-	))->register();
+    		$config->application->controllersDir,
+    		$config->application->modelsDir,
+    		$config->application->pluginsDir,
+    		$config->application->libraryDir,
+    	))->register();
 
 	$di->set('url', function() use ($config) {
 		$url = new \Phalcon\Mvc\Url();
@@ -26,12 +27,9 @@ try
 		return $url;
 	}, true);
 	
-	$di->set('volt', function($view, $di) {
+	$di->set('volt', function($view, $di) use($config) {
 		$volt = new \Phalcon\Mvc\View\Engine\Volt($view, $di);
-		$volt->setOptions(array(
-			"compiledPath" => __DIR__ . "/../cache/volt/",
-			"compiledSeparator" => "_"
-		));
+		$volt->setOptions((array)$config->volt);
 		return $volt;
 	}, true);
 

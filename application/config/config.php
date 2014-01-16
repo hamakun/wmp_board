@@ -16,5 +16,9 @@ return new \Phalcon\Config(array(
 		'libraryDir'     => __DIR__ . '/../../application/library/',
 		'baseUri'        => '/',
 
+	),
+	'volt' =>array(
+		"compiledPath" => __DIR__ . "/../../cache/volt/",
+		"compiledSeparator" => "_"
 	)
 ));
