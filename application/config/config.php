@@ -9,11 +9,11 @@ return new \Phalcon\Config(array(
 		'name'     => 'wmp_board',
 	),
 	'application' => array(
-		'controllersDir' => __DIR__ . '/../../application/controllers/',
-		'modelsDir'      => __DIR__ . '/../../application/models/',
-		'viewsDir'       => __DIR__ . '/../../application/views/',
-		'pluginsDir'     => __DIR__ . '/../../application/plugins/',
-		'libraryDir'     => __DIR__ . '/../../application/library/',
+		'controllersDir' => '../application/controllers/',
+		'modelsDir'      => '../application/models/',
+		'viewsDir'       => '../application/views/',
+		'pluginsDir'     => '../application/plugins/',
+		'libraryDir'     => '../application/library/',
 		'baseUri'        => '/wmp_board/',
 	)
 ));
