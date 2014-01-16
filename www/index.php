@@ -2,6 +2,9 @@
 
 error_reporting(E_ALL);
 
+$debug = new \Phalcon\Debug();
+$debug->listen();
+
 $config = include __DIR__ . "/../application/config/config.php";
 
 try
@@ -18,11 +21,13 @@ try
 	    __DIR__.'/../application/views/'
 	))->register();
 
+	/*
 	$di->set('url', function() use ($config) {
 		$url = new \Phalcon\Mvc\Url();
 		$url->setBaseUri('$config->application->baseUri');
 		return $url;
 	}, true);
+	*/
 
 	$di->set('volt', function($view, $di) {
 		$volt = new \Phalcon\Mvc\View\Engine\Volt($view, $di);
