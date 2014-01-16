@@ -6,7 +6,7 @@ class Boardmain extends \Phalcon\Mvc\Model
 	public $subject;
 	public $contents;
 	public $red_date;
-	public $RS;
+	
 	/**
 	 * table 매핑 
 	 * @return string

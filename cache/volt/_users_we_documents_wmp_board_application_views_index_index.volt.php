@@ -1,1 +1,0 @@
-<a href='/board'>go to the board</a>
