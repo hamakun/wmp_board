@@ -2,7 +2,10 @@
 
 error_reporting(E_ALL);
 
-$config = include __DIR__ . "/../application/config/config.php";
+$debug = new \Phalcon\Debug();
+$debug->listen();
+
+$config = include "../application/config/config.php";
 
 try
 {
@@ -14,20 +17,21 @@ try
 	// http://docs.phalconphp.com/en/latest/reference/tutorial-invo.html#autoloaders
 	$loader = new \Phalcon\Loader();
 	$loader->registerDirs(array(
-	    __DIR__.'/../application/controllers/',
-	    __DIR__.'/../application/views/'
+	    $config->application->controllersDir
 	))->register();
 
+	/*
 	$di->set('url', function() use ($config) {
 		$url = new \Phalcon\Mvc\Url();
 		$url->setBaseUri('$config->application->baseUri');
 		return $url;
 	}, true);
+	*/
 
 	$di->set('volt', function($view, $di) {
 		$volt = new \Phalcon\Mvc\View\Engine\Volt($view, $di);
 		$volt->setOptions(array(
-			"compiledPath" => __DIR__ . "/../cache/volt/",
+			"compiledPath" => '../cache/volt/',
 			"compiledSeparator" => "_"
 		));
 		return $volt;
@@ -42,7 +46,7 @@ try
 		return $view;
 	}, true);
 
-	$di->set('config', $config);
+	// $di->set('config', $config);
 
 	$application = new Phalcon\Mvc\Application($di);
 	echo $application->handle()->getContent();
